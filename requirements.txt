@@ -1,0 +1,5 @@
+streamlit
+duckduckgo_search
+sentence-transformers
+numpy
+pillow
