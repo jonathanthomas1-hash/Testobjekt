@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Kokon – wirf einen Gedanken hinein. Die Metamorphose macht daraus ein Meisterwerk, während du lebst.">
+  <title>Kokon</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%232F6F5E' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%232F6F5E'/%3E%3C/svg%3E">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="#" id="brand-home" aria-label="Kokon – zur Startseite">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.5"/>
+        <circle cx="16" cy="16" r="5" fill="currentColor"/>
+      </svg>
+      <span class="brand-name">Kokon</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="ghost-btn" id="btn-last-werk" hidden>Letztes Meisterwerk</button>
+      <button class="icon-btn" id="btn-settings" aria-label="Einstellungen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.98 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.98a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01A1.7 1.7 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.63.87 1.04 1.55 1.04H21a2 2 0 1 1 0 4h-.09c-.68 0-1.29.41-1.51 1.04Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ——— Studio: Aufnehmen & Kokon ——— -->
+  <main class="view" id="view-studio">
+
+    <section class="hero">
+      <h1 class="hero-title">Leb dein Leben.<br><em>Der Kokon arbeitet.</em></h1>
+      <p class="hero-sub">Wirf einen Gedanken hinein und geh wieder raus – Yoga, Laufen, Kaffee, Plaudern. Die Metamorphose macht später ein Meisterwerk daraus.</p>
+    </section>
+
+    <section class="capture" aria-label="Gedanken aufnehmen">
+      <div class="capture-field">
+        <textarea id="capture-input" rows="1" placeholder="Wirf etwas hinein …" autocomplete="off" spellcheck="false" enterkeyhint="done"></textarea>
+        <button class="capture-btn" id="btn-capture" aria-label="Gedanken ablegen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <p class="capture-hint"><kbd>⏎</kbd> ablegen &nbsp;·&nbsp; <kbd>⇧⏎</kbd> neue Zeile &nbsp;·&nbsp; <kbd>⌘K</kbd> fokussieren</p>
+    </section>
+
+    <section class="cocoon" aria-label="Gedanken im Kokon">
+      <div class="cocoon-head">
+        <h2 class="cocoon-title">Im Kokon <span class="count" id="thought-count">0</span></h2>
+        <button class="ghost-btn danger" id="btn-clear" hidden>Alle entfernen</button>
+      </div>
+
+      <div class="empty" id="cocoon-empty">
+        <div class="empty-orb" aria-hidden="true"></div>
+        <p>Noch ganz still hier.<br>Der erste Gedanke darf ein halber sein.</p>
+        <button class="ghost-btn" id="btn-demo">Beispiel ansehen</button>
+      </div>
+
+      <ul class="thoughts" id="thought-list"></ul>
+    </section>
+
+    <div class="morph-dock" id="morph-dock" hidden>
+      <button class="morph-btn" id="btn-morph">
+        <span class="morph-btn-label">Metamorphose</span>
+        <span class="morph-btn-sub" id="morph-sub">aus 0 Gedanken</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ——— Meisterwerk ——— -->
+  <main class="view" id="view-werk" hidden>
+    <div class="werk-toolbar">
+      <button class="ghost-btn" id="btn-back">← Zurück zum Kokon</button>
+      <div class="werk-toolbar-right">
+        <button class="ghost-btn" id="btn-copy">Als Markdown kopieren</button>
+      </div>
+    </div>
+    <article class="werk" id="werk-doc" aria-live="polite"></article>
+  </main>
+
+  <!-- ——— Metamorphose läuft ——— -->
+  <div class="morphing" id="morphing" hidden aria-live="polite">
+    <div class="morphing-orb" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+    <p class="morphing-text" id="morphing-text">Die Metamorphose beginnt …</p>
+    <p class="morphing-hint">Du kannst währenddessen gedanklich schon beim Kaffee sein.</p>
+  </div>
+
+  <!-- ——— Einstellungen ——— -->
+  <div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
+  <aside class="sheet" id="sheet-settings" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <h2 id="sheet-title">Einstellungen</h2>
+
+    <label class="field-label" for="api-key">Anthropic API-Schlüssel</label>
+    <div class="key-row">
+      <input type="password" id="api-key" placeholder="sk-ant-…" autocomplete="off" spellcheck="false">
+      <button class="ghost-btn" id="btn-key-toggle" aria-label="Schlüssel anzeigen">Zeigen</button>
+    </div>
+    <p class="field-note">Bleibt ausschließlich in deinem Browser (localStorage) und geht nur direkt an die Anthropic-API. Kein Server dazwischen.</p>
+
+    <div class="sheet-info">
+      <p><strong>Modell:</strong> Claude Opus 5 – mit Server-Fallback, falls eine Anfrage abgelehnt wird.</p>
+      <p><strong>Deine Daten:</strong> Gedanken und Meisterwerke liegen nur auf diesem Gerät.</p>
+    </div>
+
+    <div class="sheet-actions">
+      <button class="ghost-btn danger" id="btn-wipe">Alles löschen</button>
+      <button class="primary-btn" id="btn-sheet-save">Fertig</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <footer class="footer">
+    <p>Kokon · Ideen dürfen reifen, während du lebst.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
